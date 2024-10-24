@@ -5,7 +5,6 @@ on:
     branches: ["main"] # Trigger workflow on push to main
   pull_request:
     branches: ["main"] # Trigger on pull requests to main
-  workflow_dispatch:
 
 jobs:
   ansible-test:
@@ -25,6 +24,11 @@ jobs:
         run: |
           brew install ansible
 
+      - name: Create Inventory
+        run: |
+          echo "[localhost]" > inventory
+          echo "127.0.0.1 ansible_connection=local" >> inventory
+
       - name: Run Ansible Playbook
         run: |
-          ansible-playbook ansible/setup_new_machine.yml
+          ansible-playbook -i inventory ansible/setup_new_machine.yml
