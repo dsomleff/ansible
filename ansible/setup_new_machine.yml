@@ -106,7 +106,7 @@
       git:
         repo: https://github.com/dsomleff/dotfiles
         dest: "{{ ansible_env.HOME }}/dotfiles"
-        version: master
+        version: main
 
     - name: Output dotfiles clone results
       debug:
