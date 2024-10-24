@@ -1,6 +1,6 @@
 ---
 - hosts: localhost
-  become: true
+  become: false # Disable privilege escalation globally or remove it from Homebrew tasks
 
   # ==============================================
   #       Give Me Fuel Give Me Fire Installation
