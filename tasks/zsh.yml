@@ -1,0 +1,86 @@
+# ----------------------------------------------
+#               Zsh & Starship Setup
+# ----------------------------------------------
+- name: Install zsh
+  tags: zsh
+  homebrew:
+    name: zsh
+    state: present
+  register: zsh_installation
+
+- name: Output Zsh installation results
+  debug:
+    var: zsh_installation.stdout
+
+# ----------------------------------------------
+
+- name: Install Starship prompt using Homebrew
+  tags: zsh
+  homebrew:
+    name: starship
+    state: present
+  when: ansible_facts.packages.starship is not defined
+  register: starship_installation
+
+- name: Output Starship installation results
+  debug:
+    var: starship_installation
+# ----------------------------------------------
+
+- name: Configure Starship prompt in .zshrc
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    line: 'eval "$(starship init zsh)"'
+    create: yes
+
+# ----------------------------------------------
+#              Zsh Plugin Installation
+# ----------------------------------------------
+- name: Clone zsh-autosuggestions plugin
+  tags: zsh
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions.git
+    dest: "{{ ansible_env.HOME }}/.zsh/plugins/zsh-autosuggestions"
+    version: master
+  when: not ansible_env.HOME | regex_search('.*zsh-autosuggestions.*') # Check if the plugin is already installed
+
+- name: Output zsh-autosuggestions installation results
+  debug:
+    msg: "zsh-autosuggestions plugin cloned to {{ ansible_env.HOME }}/.zsh/plugins/zsh-autosuggestions"
+# ----------------------------------------------
+
+- name: Clone zsh-syntax-highlighting plugin
+  tags: zsh
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: "{{ ansible_env.HOME }}/.zsh/plugins/zsh-syntax-highlighting"
+    version: master
+  when: not ansible_env.HOME | regex_search('.*zsh-syntax-highlighting.*') # Check if the plugin is already installed
+
+- name: Output zsh-syntax-highlighting installation results
+  debug:
+    msg: "zsh-syntax-highlighting plugin cloned to {{ ansible_env.HOME }}/.zsh/plugins/zsh-syntax-highlighting"
+
+# ----------------------------------------------
+#               Update .zshrc Configuration
+# ----------------------------------------------
+- name: Ensure zsh-autosuggestions is sourced in .zshrc
+  tags: zsh
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: "^source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh$"
+    line: "source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh"
+    create: yes
+
+- name: Ensure zsh-syntax-highlighting is sourced last in .zshrc
+  tags: zsh
+  lineinfile:
+    path: "{{ ansible_env.HOME }}/.zshrc"
+    regexp: "^source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh$"
+    line: "source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+    create: yes
+    insertafter: EOF
+
+- name: Output .zshrc configuration results
+  debug:
+    msg: ".zshrc updated with zsh-autosuggestions and zsh-syntax-highlighting plugins"

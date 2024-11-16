@@ -1,0 +1,16 @@
+# ----------------------------------------------
+#           Install Pets/Ansible
+# ----------------------------------------------
+- name: Check if Pets/ansible directory exists
+  stat:
+    path: "{{ ansible_env.HOME }}/Pets/ansible"
+  register: pets_ansible_dir
+  tags: pets
+
+- name: Clone the repository if Pets/ansible directory does not exist
+  git:
+    repo: "https://github.com/dsomleff/ansible.git"
+    dest: "{{ ansible_env.HOME }}/Pets/ansible"
+  when: not pets_ansible_dir.stat.exists
+  register: git_clone
+  tags: git

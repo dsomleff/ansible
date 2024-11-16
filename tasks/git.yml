@@ -1,0 +1,18 @@
+# ----------------------------------------------
+#                    Git Installation
+# ----------------------------------------------
+- name: Install Git
+  homebrew:
+    name: git
+    state: present
+  register: git_installation
+  tags: git
+
+- name: Output Git installation results
+  debug:
+    msg: >
+      {% if 'stdout' in git_installation %}
+        {{ git_installation.stdout }}
+      {% else %}
+        'Git was already present, no output.'
+      {% endif %}

@@ -1,0 +1,13 @@
+# ----------------------------------------------
+#            Get .dotfiles from git
+# ----------------------------------------------
+- name: Clone dotfiles repository
+  tags: dotfiles
+  git:
+    repo: https://github.com/dsomleff/dotfiles
+    dest: "{{ ansible_env.HOME }}/dotfiles"
+    version: main
+
+- name: Output dotfiles clone results
+  debug:
+    msg: "Dotfiles cloned to {{ ansible_env.HOME }}/dotfiles"

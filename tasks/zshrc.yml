@@ -1,0 +1,14 @@
+# ----------------------------------------------
+#            Replace .zshrc with Custom Version
+# ----------------------------------------------
+- name: Replace .zshrc with custom version
+  tags: zshrc
+  copy:
+    src: "{{ ansible_env.HOME }}/dotfiles/.zshrc" # Path to your custom .zshrc in the cloned repo
+    dest: "{{ ansible_env.HOME }}/.zshrc" # Path to the target .zshrc
+    remote_src: yes # Indicate that the source file is already on the remote machine
+    force: yes # Force replacement even if the file exists
+
+- name: Output .zshrc replacement results
+  debug:
+    msg: ".zshrc replaced with custom version"

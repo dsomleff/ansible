@@ -1,0 +1,11 @@
+# ==============================================
+#                Run System Settings Script
+# ==============================================
+- name: Run System settings script
+  tags: macos
+  shell: bash "{{ ansible_env.HOME }}/Pets/ansible/scripts/osx-defaults.sh"
+  register: system_settings_setup
+
+- name: Output System settings setup results
+  debug:
+    var: system_settings_setup.stdout

@@ -1,0 +1,31 @@
+---
+- hosts: localhost
+  become: false
+
+  # ==============================================
+  #       Give Me Fuel Give Me Fire Installation
+  # ==============================================
+  tasks:
+    - name: Git Installation
+      import_tasks: tasks/git.yml
+
+    - name: Zsh & Starship Setup
+      import_tasks: tasks/zsh.yml
+
+    - name: Get .dotfiles from git
+      import_tasks: tasks/dotfiles.yml
+
+    - name: Replace .zshrc with Custom Version
+      import_tasks: tasks/zshrc.yml
+
+    - name: Install Pets/Ansible
+      import_tasks: tasks/pets.yml
+
+    - name: Install all brew packages
+      import_tasks: tasks/brew.yml
+
+    - name: Install local scripts
+      import_tasks: tasks/local-scripts.yml
+
+    - name: Run System Settings Script
+      import_tasks: tasks/macos.yml
