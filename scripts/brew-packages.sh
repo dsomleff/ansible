@@ -12,7 +12,7 @@ brew install tmuxp
 brew install stow
 brew install alacritty
 brew install wget
-brew install tree
+brew install bat
 
 # Install dev tools
 brew install --cask docker
