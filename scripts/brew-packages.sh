@@ -31,7 +31,6 @@ brew install --cask rancher
 brew install --cask notion
 
 # Other tools
-brew install --cask rectangle
 brew install --cask telegram
 
 # Remove outdated versions from the cellar.
