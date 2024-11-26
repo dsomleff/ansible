@@ -13,7 +13,7 @@ Before running the setup script, follow these instructions to ensure it runs smo
 2. **Make the script executable:**
 
    ```bash
-   chmod +x setup_new_machine.sh
+   chmod u+x setup_new_machine.sh
    ```
 
 3. **Run the script from any location:**
