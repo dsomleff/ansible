@@ -10,12 +10,12 @@ brew install neovim
 brew install tmux
 brew install tmuxp
 brew install stow
-brew install alacritty
 brew install wget
 brew install bat
 brew install yazi
 
 # Install dev tools
+brew install --cask alacritty
 brew install --cask docker
 brew install insomnia
 brew install raycast
