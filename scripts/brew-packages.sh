@@ -13,6 +13,7 @@ brew install stow
 brew install wget
 brew install bat
 brew install yazi
+brew install starship
 
 # Install dev tools
 brew install --cask alacritty
