@@ -14,6 +14,9 @@ brew install wget
 brew install bat
 brew install yazi
 brew install starship
+brew install tree-sitter
+brew install fd
+brew install ripgrep
 
 # Install dev tools
 brew install --cask alacritty
