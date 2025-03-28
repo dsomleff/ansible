@@ -35,7 +35,7 @@ brew install --cask font-jetbrains-mono
 
 brew install --cask webstorm
 brew install --cask rancher
-brew install --cask notion
+# brew install --cask notion
 
 # Other tools
 brew install --cask telegram
