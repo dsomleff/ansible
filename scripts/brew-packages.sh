@@ -17,6 +17,8 @@ brew install starship
 brew install tree-sitter
 brew install fd
 brew install ripgrep
+brew install nushell
+brew install fnm
 
 # Install dev tools
 brew install --cask alacritty
@@ -25,8 +27,8 @@ brew install insomnia
 brew install raycast
 brew install --cask arc
 
-brew install node@18
-brew link --force --overwrite node@18
+# brew install node@18
+# brew link --force --overwrite node@18
 
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
