@@ -22,13 +22,10 @@ brew install fnm
 
 # Install dev tools
 brew install --cask alacritty
-brew install --cask docker
+# brew install --cask docker
 brew install insomnia
 brew install raycast
 brew install --cask arc
-
-# brew install node@18
-# brew link --force --overwrite node@18
 
 brew tap homebrew/cask-fonts
 brew install --cask font-jetbrains-mono
